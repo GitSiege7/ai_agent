@@ -2,9 +2,9 @@ import os
 
 def write_file(working_dir, file_path, content):
     abs_working_dir = os.path.abspath(working_dir)
-    abs_path = os.path.join(abs_working_dir, file_path)
-
-    if not os.path.abspath(os.path.join(working_dir, file_path)).startswith(abs_working_dir):
+    abs_path = os.path.abspath(os.path.join(working_dir, file_path))
+    
+    if not abs_path.startswith(abs_working_dir):
         return f"Error: {file_path} is outside working directory"
 
     try:
