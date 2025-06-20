@@ -18,6 +18,7 @@ def get_file_content(working_dir, file_path):
     try:
         content = fp.read(MAX_CHARS)
     except:
+        fp.close()
         return f"Error: Failed to read file pointer to '{abs_path}'"
     
     if len(content) == MAX_CHARS:
