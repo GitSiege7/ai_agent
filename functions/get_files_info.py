@@ -9,13 +9,15 @@ def get_files_info(working_dir, dir=None):
     if not os.path.isdir(os.path.join(working_dir, dir)):
         return f'Error: "{dir}" is not a directory'
     
-    # abs_dir = os.path.join(abs_working_dir, dir)
-    contents = os.listdir(abs_dir)
+    try:
+        contents = os.listdir(abs_dir)
+    except:
+        return f"Failed to list directories at '{abs_dir}'"
 
     files = []
     for item in contents:
         item_dir = os.path.join(abs_dir, item)
-
+        
         files.append(f"- {item}: file_size={os.path.getsize(item_dir)} bytes, is_dir={os.path.isdir(item_dir)}")
 
     return "\n".join(files)
