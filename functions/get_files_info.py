@@ -2,11 +2,15 @@ import os
 
 def get_files_info(working_dir, dir=None):
     abs_working_dir = os.path.abspath(working_dir)
-    abs_dir = os.path.join(abs_working_dir, dir)
+    
+    if dir:
+        abs_dir = os.path.join(abs_working_dir, dir)
+    else:
+        abs_dir = abs_working_dir
     
     if not abs_dir.startswith(abs_working_dir) or dir == "../":
         return f'Error: Cannot list "{dir}" as it is outside the permitted working directory'
-    if not os.path.isdir(os.path.join(working_dir, dir)):
+    if not os.path.isdir(abs_dir):
         return f'Error: "{dir}" is not a directory'
     
     try:
